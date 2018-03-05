@@ -1,63 +1,55 @@
 package ru.bellintegrator.practice.organization.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Version;
+import javax.persistence.Column;
 
-// Организация
+/**
+ * Организация
+ */
 
 @Entity
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue
+    private Long id;
 
     @Version
     private Integer version;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(name = "full_name")
+    @Column(name = "full_name", length = 150)
     private String fullName;
 
     @Column
-    private Integer inn;
+    private String inn;
 
     @Column
     private String kpp;
 
-    @Column
+    @Column(length = 200)
     private String address;
 
     @Column
-    private Integer phone;
+    private String phone;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
 
-    // constructor
+    // constructors
 
-    public Organization() {
-    }
 
     // getters and setters
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getName() {
@@ -76,11 +68,11 @@ public class Organization {
         this.fullName = fullName;
     }
 
-    public Integer getInn() {
+    public String getInn() {
         return inn;
     }
 
-    public void setInn(Integer inn) {
+    public void setInn(String inn) {
         this.inn = inn;
     }
 
@@ -100,11 +92,11 @@ public class Organization {
         this.address = address;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

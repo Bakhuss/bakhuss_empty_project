@@ -1,57 +1,49 @@
 package ru.bellintegrator.practice.office.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Version;
+import javax.persistence.Column;
 
-// Офис
+/**
+ * Офис
+ */
 
 @Entity
 public class Office {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue
+    private Long id;
 
     @Version
     private Integer version;
 
-    @Column
+    @Column(nullable = false, length = 50)
     private String name;
 
     @Column(name = "organization_id")
     private Integer organizationId;
 
-    @Column
+    @Column(length = 200)
     private String address;
 
     @Column
-    private Integer phone;
+    private String phone;
 
-    @Column(name = "is_active")
+    @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
 
     // constructors
 
-    public Office() {
-    }
 
     // getters and setters
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getName() {
@@ -78,11 +70,11 @@ public class Office {
         this.address = address;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
