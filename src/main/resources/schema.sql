@@ -78,3 +78,32 @@ CREATE TABLE Document (
     receive_date INTEGER,
     expire_date  INTEGER
 );
+
+
+CREATE INDEX IX_Document_User_Id ON Document (
+    user_id
+);
+
+CREATE INDEX IX_Document_Doc_types_Id ON Document (
+    doc_types_id
+);
+
+CREATE INDEX IX_Office_Organization_Id ON Office (
+    organization_id
+);
+
+CREATE INDEX IX_Position_Position_List_Id ON Position (
+    position_list_id
+);
+
+CREATE INDEX IX_Position_Office_Id ON Position (
+    office_id
+);
+
+CREATE INDEX IX_User_Position_Id ON User (
+    position_id
+);
+
+CREATE INDEX IX_User_Sitizenship_Id ON User (
+    citizenship_id
+);
