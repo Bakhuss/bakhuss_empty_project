@@ -1,8 +1,13 @@
 package ru.bellintegrator.practice.office.model;
 
+import ru.bellintegrator.practice.organization.model.Organization;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 import javax.persistence.Column;
 
@@ -23,8 +28,9 @@ public class Office {
     @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(name = "organization_id")
-    private Integer organizationId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
 
     @Column(length = 200)
     private String address;
@@ -54,12 +60,12 @@ public class Office {
         this.name = name;
     }
 
-    public Integer getOrganizationId() {
-        return organizationId;
+    public Organization getOrganization() {
+        return organization;
     }
 
-    public void setOrganizationId(Integer organizationId) {
-        this.organizationId = organizationId;
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
     public String getAddress() {

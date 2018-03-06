@@ -1,10 +1,14 @@
 package ru.bellintegrator.practice.organization.model;
 
+import ru.bellintegrator.practice.office.model.Office;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.persistence.Column;
+import java.util.Set;
 
 /**
  * Организация
@@ -107,4 +111,7 @@ public class Organization {
     public void setActive(Boolean active) {
         isActive = active;
     }
+
+    @OneToMany(mappedBy = "organization")
+    private Set<Office> offices;
 }

@@ -11,7 +11,7 @@ CREATE TABLE Doc_types (
     id   INTEGER       PRIMARY KEY AUTOINCREMENT
                        UNIQUE
                        NOT NULL,
-    name VARCHAR (100) NOT NULL,
+    name VARCHAR       NOT NULL,
     code VARCHAR       UNIQUE
                        NOT NULL
 );
@@ -20,11 +20,11 @@ CREATE TABLE Organization (
     id        INTEGER       PRIMARY KEY AUTOINCREMENT
                             NOT NULL
                             UNIQUE,
-    name      VARCHAR (50)  NOT NULL,
-    full_name VARCHAR (150),
+    name      VARCHAR       NOT NULL,
+    full_name VARCHAR,
     inn       VARCHAR,
-    kpp       VARCHAR (9),
-    address   VARCHAR (200),
+    kpp       VARCHAR,
+    address   VARCHAR,
     phone     VARCHAR,
     is_active BOOLEAN       NOT NULL
 );
@@ -33,10 +33,10 @@ CREATE TABLE Office (
     id              INTEGER       PRIMARY KEY AUTOINCREMENT
                                   NOT NULL
                                   UNIQUE,
-    name            VARCHAR (50)  NOT NULL,
+    name            VARCHAR       NOT NULL,
     organization_id INTEGER       REFERENCES Organization (id)
                                   NOT NULL,
-    address         VARCHAR (200),
+    address         VARCHAR,
     phone           VARCHAR,
     is_active       BOOLEAN       NOT NULL
 );
@@ -45,7 +45,7 @@ CREATE TABLE Position_list (
     id   INTEGER       PRIMARY KEY AUTOINCREMENT
                        UNIQUE
                        NOT NULL,
-    name VARCHAR (200) NOT NULL
+    name VARCHAR       NOT NULL
                        UNIQUE
 );
 
@@ -61,9 +61,9 @@ CREATE TABLE User (
     id             INTEGER      PRIMARY KEY AUTOINCREMENT
                                 UNIQUE
                                 NOT NULL,
-    first_name     VARCHAR (50) NOT NULL,
-    second_name    VARCHAR (50) NOT NULL,
-    middle_name    VARCHAR (50),
+    first_name     VARCHAR      NOT NULL,
+    second_name    VARCHAR      NOT NULL,
+    middle_name    VARCHAR,
     position_id    INTEGER      REFERENCES Position (id)
                                 UNIQUE,
     phone          VARCHAR,
@@ -74,7 +74,7 @@ CREATE TABLE User (
 CREATE TABLE Document (
     user_id      INTEGER      REFERENCES User (id),
     doc_types_id INTEGER      REFERENCES Doc_types (id),
-    number       VARCHAR (50),
+    number       VARCHAR,
     receive_date INTEGER,
     expire_date  INTEGER
 );

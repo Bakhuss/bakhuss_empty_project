@@ -1,5 +1,7 @@
 package ru.bellintegrator.practice.user.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
