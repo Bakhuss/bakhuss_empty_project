@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 
 /**
- * Страна
+ * Государство
  */
 @Entity
 public class Country {
