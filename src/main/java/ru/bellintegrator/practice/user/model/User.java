@@ -1,7 +1,5 @@
 package ru.bellintegrator.practice.user.model;
 
-import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.Column;
 /**
  * Сотрудник
  */
-
 @Entity
 public class User {
 
@@ -42,11 +39,6 @@ public class User {
 
     @Column(name = "is_identified", nullable = false)
     private Boolean isIdentified;
-
-    // constructors
-
-
-    // getters and setters
 
 
     public Long getId() {

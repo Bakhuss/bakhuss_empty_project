@@ -1,4 +1,4 @@
-CREATE TABLE Countries (
+CREATE TABLE IF NOT EXISTS Country (
     id   INTEGER PRIMARY KEY AUTOINCREMENT
                  UNIQUE
                  NOT NULL,
@@ -7,49 +7,49 @@ CREATE TABLE Countries (
                  NOT NULL
 );
 
-CREATE TABLE Doc_types (
+CREATE TABLE IF NOT EXISTS Doc_type (
     id   INTEGER       PRIMARY KEY AUTOINCREMENT
                        UNIQUE
                        NOT NULL,
-    name VARCHAR       NOT NULL,
+    name VARCHAR (100) NOT NULL,
     code VARCHAR       UNIQUE
                        NOT NULL
 );
 
-CREATE TABLE Organization (
+CREATE TABLE IF NOT EXISTS Organization (
     id        INTEGER       PRIMARY KEY AUTOINCREMENT
                             NOT NULL
                             UNIQUE,
-    name      VARCHAR       NOT NULL,
-    full_name VARCHAR,
+    name      VARCHAR (50)  NOT NULL,
+    full_name VARCHAR (150),
     inn       VARCHAR,
-    kpp       VARCHAR,
-    address   VARCHAR,
+    kpp       VARCHAR (9),
+    address   VARCHAR (200),
     phone     VARCHAR,
     is_active BOOLEAN       NOT NULL
 );
 
-CREATE TABLE Office (
+CREATE TABLE IF NOT EXISTS Office (
     id              INTEGER       PRIMARY KEY AUTOINCREMENT
                                   NOT NULL
                                   UNIQUE,
-    name            VARCHAR       NOT NULL,
+    name            VARCHAR (50)  NOT NULL,
     organization_id INTEGER       REFERENCES Organization (id)
                                   NOT NULL,
-    address         VARCHAR,
+    address         VARCHAR (200),
     phone           VARCHAR,
     is_active       BOOLEAN       NOT NULL
 );
 
-CREATE TABLE Position_list (
+CREATE TABLE IF NOT EXISTS Position_list (
     id   INTEGER       PRIMARY KEY AUTOINCREMENT
                        UNIQUE
                        NOT NULL,
-    name VARCHAR       NOT NULL
+    name VARCHAR (200) NOT NULL
                        UNIQUE
 );
 
-CREATE TABLE Position (
+CREATE TABLE IF NOT EXISTS Position (
     id               INTEGER NOT NULL
                              UNIQUE
                              PRIMARY KEY AUTOINCREMENT,
@@ -57,24 +57,24 @@ CREATE TABLE Position (
     position_list_id INTEGER REFERENCES Position_list (id)
 );
 
-CREATE TABLE User (
+CREATE TABLE IF NOT EXISTS User (
     id             INTEGER      PRIMARY KEY AUTOINCREMENT
                                 UNIQUE
                                 NOT NULL,
-    first_name     VARCHAR      NOT NULL,
-    second_name    VARCHAR      NOT NULL,
-    middle_name    VARCHAR,
+    first_name     VARCHAR (50) NOT NULL,
+    second_name    VARCHAR (50) NOT NULL,
+    middle_name    VARCHAR (50),
     position_id    INTEGER      REFERENCES Position (id)
                                 UNIQUE,
     phone          VARCHAR,
-    citizenship_id INTEGER      REFERENCES Countries (id),
+    citizenship_id INTEGER      REFERENCES Country (id),
     is_identified  BOOLEAN      NOT NULL
 );
 
-CREATE TABLE Document (
+CREATE TABLE IF NOT EXISTS Document (
     user_id      INTEGER      REFERENCES User (id),
-    doc_types_id INTEGER      REFERENCES Doc_types (id),
-    number       VARCHAR,
+    doc_type_id  INTEGER      REFERENCES Doc_type (id),
+    number       VARCHAR (50),
     receive_date INTEGER,
     expire_date  INTEGER
 );
@@ -84,8 +84,8 @@ CREATE INDEX IX_Document_User_Id ON Document (
     user_id
 );
 
-CREATE INDEX IX_Document_Doc_types_Id ON Document (
-    doc_types_id
+CREATE INDEX IX_Document_Doc_type_Id ON Document (
+    doc_type_id
 );
 
 CREATE INDEX IX_Office_Organization_Id ON Office (

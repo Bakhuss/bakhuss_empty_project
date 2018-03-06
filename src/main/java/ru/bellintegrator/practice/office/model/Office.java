@@ -14,7 +14,6 @@ import javax.persistence.Column;
 /**
  * Офис
  */
-
 @Entity
 public class Office {
 
@@ -40,12 +39,6 @@ public class Office {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
-
-
-    // constructors
-
-
-    // getters and setters
 
 
     public Long getId() {

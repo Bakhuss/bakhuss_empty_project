@@ -1,18 +1,16 @@
-package ru.bellintegrator.practice.organization.model;
+package ru.bellintegrator.practice.utils;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Version;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Version;
 
 /**
- * Список должностей
+ * Тип документа
  */
 @Entity
-@Table(name = "Position_List")
-public class PositionList {
+public class DocType {
 
     @Id
     @GeneratedValue
@@ -21,8 +19,11 @@ public class PositionList {
     @Version
     private Integer version;
 
-    @Column(nullable = false, unique = true, length = 200)
+    @Column(length = 100, nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String code;
 
 
     public Long getId() {
@@ -35,5 +36,13 @@ public class PositionList {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

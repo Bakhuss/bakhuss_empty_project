@@ -13,7 +13,6 @@ import java.util.Set;
 /**
  * Организация
  */
-
 @Entity
 public class Organization {
 
@@ -44,12 +43,6 @@ public class Organization {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
-
-
-    // constructors
-
-
-    // getters and setters
 
 
     public Long getId() {
