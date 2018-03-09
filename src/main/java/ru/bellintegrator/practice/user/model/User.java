@@ -1,8 +1,15 @@
 package ru.bellintegrator.practice.user.model;
 
+import ru.bellintegrator.practice.organization.model.Position;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.persistence.Column;
 
@@ -28,8 +35,12 @@ public class User {
     @Column(name = "middle_name", length = 50)
     private String middleName;
 
-    @Column(name = "position_id")
-    private Integer positionId;
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Document document;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "position_id")
+    private Position position;
 
     @Column
     private String phone;
@@ -69,12 +80,20 @@ public class User {
         this.middleName = middleName;
     }
 
-    public Integer getPositionId() {
-        return positionId;
+    public Document getDocument() {
+        return document;
     }
 
-    public void setPositionId(Integer positionId) {
-        this.positionId = positionId;
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public String getPhone() {
