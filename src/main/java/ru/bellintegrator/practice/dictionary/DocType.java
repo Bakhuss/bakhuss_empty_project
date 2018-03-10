@@ -27,7 +27,7 @@ public class DocType {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(length = 10, nullable = false)
     private String code;
 
     @OneToMany(mappedBy = "docType", cascade = CascadeType.ALL, orphanRemoval = true)

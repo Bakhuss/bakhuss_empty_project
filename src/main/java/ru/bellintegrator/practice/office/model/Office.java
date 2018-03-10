@@ -24,7 +24,7 @@ public class Office {
     @Version
     private Integer version;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,7 +34,7 @@ public class Office {
     @Column(length = 200)
     private String address;
 
-    @Column
+    @Column(length = 20)
     private String phone;
 
     @Column(name = "is_active", nullable = false)

@@ -30,10 +30,10 @@ public class Organization {
     @Column(name = "full_name", length = 150)
     private String fullName;
 
-    @Column
+    @Column(length = 12)
     private String inn;
 
-    @Column
+    @Column(length = 9)
     private String kpp;
 
     @Column(length = 200)
