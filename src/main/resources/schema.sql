@@ -1,4 +1,4 @@
-CREATE TABLE Country (
+CREATE TABLE IF NOT EXISTS Country (
     id      INTEGER       PRIMARY KEY AUTOINCREMENT
                           UNIQUE
                           NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE Country (
                           NOT NULL
 );
 
-CREATE TABLE Doc_type (
+CREATE TABLE IF NOT EXISTS Doc_type (
     id      INTEGER       PRIMARY KEY AUTOINCREMENT
                           UNIQUE
                           NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE Doc_type (
                           NOT NULL
 );
 
-CREATE TABLE Document (
+CREATE TABLE IF NOT EXISTS Document (
     user_id      INTEGER      REFERENCES User (id),
     version      INTEGER      NOT NULL,
     doc_type_id  INTEGER      REFERENCES Doc_type (id),
@@ -27,7 +27,7 @@ CREATE TABLE Document (
     expire_date  DATE
 );
 
-CREATE TABLE Organization (
+CREATE TABLE IF NOT EXISTS Organization (
     id        INTEGER       PRIMARY KEY AUTOINCREMENT
                             NOT NULL
                             UNIQUE,
@@ -41,7 +41,7 @@ CREATE TABLE Organization (
     is_active BOOLEAN       NOT NULL
 );
 
-CREATE TABLE Office (
+CREATE TABLE IF NOT EXISTS Office (
     id              INTEGER       PRIMARY KEY AUTOINCREMENT
                                   NOT NULL
                                   UNIQUE,
@@ -54,7 +54,7 @@ CREATE TABLE Office (
     is_active       BOOLEAN       NOT NULL
 );
 
-CREATE TABLE Position (
+CREATE TABLE IF NOT EXISTS Position (
     id      INTEGER       PRIMARY KEY AUTOINCREMENT
                           UNIQUE
                           NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE Position (
                           UNIQUE
 );
 
-CREATE TABLE User (
+CREATE TABLE IF NOT EXISTS User (
     id             INTEGER      PRIMARY KEY AUTOINCREMENT
                                 UNIQUE
                                 NOT NULL,
@@ -78,12 +78,21 @@ CREATE TABLE User (
     is_identified  BOOLEAN      NOT NULL
 );
 
-CREATE TABLE User_Country (
+CREATE TABLE IF NOT EXISTS User_Country (
     user_id    INTEGER REFERENCES User (id)
                        NOT NULL,
     country_id INTEGER REFERENCES Country (id)
                        NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS Login (
+    user_id  INTEGER NOT NULL
+                     REFERENCES User (id)
+                     UNIQUE,
+    login    VARCHAR NOT NULL
+                     UNIQUE,
+    password VARCHAR NOT NULL
+)
 
 
 CREATE INDEX IX_Document_User_Id ON Document (
@@ -112,4 +121,8 @@ CREATE INDEX IX_User_Country ON User_Country (
 
 CREATE INDEX IX_Country_User ON User_Country (
     country_id
+);
+
+CREATE INDEX IX_Login_User_id ON Login (
+    user_id
 );
