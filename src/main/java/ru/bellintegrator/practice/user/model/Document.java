@@ -25,16 +25,8 @@ public class Document {
     @Column(name = "user_id")
     private Long id;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY)
-    private User user;
-
     @Version
     private Integer version;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doc_type_id")
-    private DocType docType;
 
     @Column(length = 50)
     private String number;
@@ -47,21 +39,17 @@ public class Document {
     @Temporal(TemporalType.DATE)
     private Date expireDate;
 
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    private User user;
 
-    public User getUser() {
-        return user;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doc_type_id")
+    private DocType docType;
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
-    public DocType getDocType() {
-        return docType;
-    }
-
-    public void setDocType(DocType docType) {
-        this.docType = docType;
+    public Long getId() {
+        return id;
     }
 
     public String getNumber() {
@@ -86,5 +74,21 @@ public class Document {
 
     public void setExpireDate(Date expireDate) {
         this.expireDate = expireDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public DocType getDocType() {
+        return docType;
+    }
+
+    public void setDocType(DocType docType) {
+        this.docType = docType;
     }
 }

@@ -21,27 +21,19 @@ public class Login {
     @Version
     private Integer version;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY)
-    private User user;
-
     @Column(unique = true, nullable = true)
     private String login;
 
     @Column(nullable = false)
     private String password;
 
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    private User user;
+
 
     public Long getId() {
         return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getLogin() {
@@ -58,5 +50,13 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

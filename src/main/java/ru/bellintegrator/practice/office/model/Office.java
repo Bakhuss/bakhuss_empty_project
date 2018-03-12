@@ -27,10 +27,6 @@ public class Office {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id")
-    private Organization organization;
-
     @Column(length = 200)
     private String address;
 
@@ -39,6 +35,10 @@ public class Office {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
 
 
     public Long getId() {
@@ -51,14 +51,6 @@ public class Office {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
     }
 
     public String getAddress() {
@@ -83,5 +75,13 @@ public class Office {
 
     public void setActive(Boolean active) {
         isActive = active;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 }

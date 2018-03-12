@@ -1,7 +1,7 @@
 package ru.bellintegrator.practice.user.model;
 
 import ru.bellintegrator.practice.dictionary.Country;
-import ru.bellintegrator.practice.organization.model.Position;
+import ru.bellintegrator.practice.dictionary.Position;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -39,6 +39,12 @@ public class User {
     @Column(name = "middle_name", length = 50)
     private String middleName;
 
+    @Column(length = 20)
+    private String phone;
+
+    @Column(name = "is_identified", nullable = false)
+    private Boolean isIdentified;
+
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Document document;
 
@@ -48,10 +54,6 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")
     private Position position;
-
-    @Column(length = 20)
-    private String phone;
-
 
     @ManyToMany(
             cascade = {
@@ -65,9 +67,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "country_id")
     )
     private List<Country> citizenships;
-
-    @Column(name = "is_identified", nullable = false)
-    private Boolean isIdentified;
 
 
     public Long getId() {
@@ -98,6 +97,22 @@ public class User {
         this.middleName = middleName;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Boolean getIdentified() {
+        return isIdentified;
+    }
+
+    public void setIdentified(Boolean identified) {
+        isIdentified = identified;
+    }
+
     public Document getDocument() {
         return document;
     }
@@ -122,37 +137,11 @@ public class User {
         this.position = position;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public List<Country> getCitizenships() {
         return citizenships;
     }
 
     public void setCitizenships(List<Country> citizenships) {
         this.citizenships = citizenships;
-    }
-
-    public Boolean getIdentified() {
-        return isIdentified;
-    }
-
-    public void setIdentified(Boolean identified) {
-        isIdentified = identified;
-    }
-
-    public void addCitizenship(Country country) {
-        getCitizenships().add(country);
-        country.getUsers().add(this);
-    }
-
-    public void removeCitizenship(Country country) {
-        getCitizenships().remove(country);;
-        country.getUsers().remove(this);
     }
 }

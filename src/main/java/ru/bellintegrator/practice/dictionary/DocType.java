@@ -1,15 +1,10 @@
 package ru.bellintegrator.practice.dictionary;
 
-import ru.bellintegrator.practice.user.model.Document;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Version;
-import java.util.Set;
 
 /**
  * Тип документа
@@ -30,9 +25,6 @@ public class DocType {
     @Column(length = 10, nullable = false)
     private String code;
 
-    @OneToMany(mappedBy = "docType", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Document> documents;
-
 
     public Long getId() {
         return id;
@@ -52,23 +44,5 @@ public class DocType {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public Set<Document> getDocuments() {
-        return documents;
-    }
-
-    public void setDocuments(Set<Document> documents) {
-        this.documents = documents;
-    }
-
-    public void addDocument(Document document) {
-        getDocuments().add(document);
-        document.setDocType(this);
-    }
-
-    public void removeDocument(Document document) {
-        getDocuments().remove(document);
-        document.setDocType(null);
     }
 }
