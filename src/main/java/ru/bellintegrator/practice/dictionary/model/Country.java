@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.dictionary;
+package ru.bellintegrator.practice.dictionary.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

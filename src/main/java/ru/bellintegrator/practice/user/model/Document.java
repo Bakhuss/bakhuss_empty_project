@@ -1,6 +1,6 @@
 package ru.bellintegrator.practice.user.model;
 
-import ru.bellintegrator.practice.dictionary.DocType;
+import ru.bellintegrator.practice.dictionary.model.DocType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

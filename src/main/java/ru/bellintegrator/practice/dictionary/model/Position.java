@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.dictionary;
+package ru.bellintegrator.practice.dictionary.model;
 
 import ru.bellintegrator.practice.user.model.User;
 

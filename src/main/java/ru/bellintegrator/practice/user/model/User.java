@@ -1,7 +1,7 @@
 package ru.bellintegrator.practice.user.model;
 
-import ru.bellintegrator.practice.dictionary.Country;
-import ru.bellintegrator.practice.dictionary.Position;
+import ru.bellintegrator.practice.dictionary.model.Country;
+import ru.bellintegrator.practice.dictionary.model.Position;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
