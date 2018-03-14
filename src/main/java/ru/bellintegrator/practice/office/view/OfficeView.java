@@ -1,8 +1,26 @@
 package ru.bellintegrator.practice.office.view;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class OfficeView {
 
+    @ApiModelProperty(hidden = true)
+    public long id;
 
-    public OfficeView() {
+    public String name;
+
+    public String address;
+
+    public String phone;
+
+    public boolean isActive;
+
+    public String organization_id;
+
+
+    @Override
+    public String toString() {
+        return "{id:" + id + ";name:" + name + ";address:" + address +
+                ";phone:" + phone + ";isActive:" + isActive + ";organization_id:" + organization_id + "}";
     }
 }

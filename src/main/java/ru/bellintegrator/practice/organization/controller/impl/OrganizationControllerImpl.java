@@ -26,4 +26,33 @@ public class OrganizationControllerImpl implements OrganizationController {
     }
 
 
+    @Override
+    @RequestMapping(value = "/save", method = {POST})
+    public Boolean addOrganization(@RequestBody OrganizationView organization) {
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/update", method = {POST})
+    public Boolean updateOrganization(OrganizationView organization) {
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/delete", method = {POST})
+    public Boolean deleteOrganization(Long id) {
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/", method = {GET})
+    public OrganizationView getOrganization(Long id) {
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/list", method = {POST})
+    public List<OrganizationView> getAllOrganizations(OrganizationView organization) {
+        return null;
+    }
 }

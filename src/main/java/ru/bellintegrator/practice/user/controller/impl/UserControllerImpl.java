@@ -25,5 +25,33 @@ public class UserControllerImpl implements UserController {
     }
 
 
+    @Override
+    @RequestMapping(value = "/save", method = {POST})
+    public Boolean addUser(UserView user) {
+        return null;
+    }
 
+    @Override
+    @RequestMapping(value = "/update", method = {POST})
+    public Boolean updateUser(UserView user) {
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/delete", method = {POST})
+    public Boolean deleteUser(Long id) {
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/", method = {GET})
+    public UserView getUser(Long id) {
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/list", method = {POST})
+    public List<UserView> getAllUsers(UserView user) {
+        return null;
+    }
 }
