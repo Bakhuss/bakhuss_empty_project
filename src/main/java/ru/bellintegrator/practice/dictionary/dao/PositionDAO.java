@@ -1,4 +1,4 @@
 package ru.bellintegrator.practice.dictionary.dao;
 
-public interface PositionDAO {
+public interface PositionDao {
 }

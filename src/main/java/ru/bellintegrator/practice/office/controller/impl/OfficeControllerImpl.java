@@ -27,20 +27,20 @@ public class OfficeControllerImpl implements OfficeController {
 
     @Override
     @RequestMapping(value = "/save", method = {POST})
-    public Boolean addOffice(OfficeView office) {
-        return null;
+    public void addOffice(OfficeView office) {
+
     }
 
     @Override
     @RequestMapping(value = "/update", method = {POST})
-    public Boolean updateOffice(OfficeView office) {
-        return null;
+    public void updateOffice(OfficeView office) {
+
     }
 
     @Override
     @RequestMapping(value = "/delete", method = {POST})
-    public Boolean deleteOffice(Long id) {
-        return null;
+    public void deleteOffice(Long id) {
+
     }
 
     @Override

@@ -1,11 +1,12 @@
 package ru.bellintegrator.practice.office.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import ru.bellintegrator.practice.office.view.OfficeView;
 
 import java.util.List;
 
+/**
+ * Controller для работы с Office
+ */
 public interface OfficeController {
 
     /**
@@ -13,28 +14,28 @@ public interface OfficeController {
      * @param office
      * @return success value
      */
-    Boolean addOffice(@RequestBody OfficeView office);
+    void addOffice(OfficeView office);
 
     /**
      * Update office
      * @param office
      * @return success value
      */
-    Boolean updateOffice(OfficeView office);
+    void updateOffice(OfficeView office);
 
     /**
      * Delete office
      * @param id
      * @return success value
      */
-    Boolean deleteOffice(Long id);
+    void deleteOffice(Long id);
 
     /**
      * Get office
      * @param id
      * @return JSON office value
      */
-    OfficeView getOffice(@PathVariable(required = false) Long id);
+    OfficeView getOffice(Long id);
 
     /**
      * Get all offices

@@ -1,10 +1,12 @@
 package ru.bellintegrator.practice.user.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
 import ru.bellintegrator.practice.user.view.UserView;
 
 import java.util.List;
 
+/**
+ * Controller для работы с User
+ */
 public interface UserController {
 
     /**
@@ -12,28 +14,28 @@ public interface UserController {
      * @param user
      * @return success value
      */
-    Boolean addUser(UserView user);
+    void addUser(UserView user);
 
     /**
      * Update user
      * @param user
      * @return success value
      */
-    Boolean updateUser(UserView user);
+    void updateUser(UserView user);
 
     /**
      * Delete user
      * @param id
      * @return success value
      */
-    Boolean deleteUser(Long id);
+    void deleteUser(Long id);
 
     /**
      * Get user
      * @param id
      * @return JSON user value
      */
-    UserView getUser(@PathVariable(required = false) Long id);
+    UserView getUser(Long id);
 
     /**
      * Get all users

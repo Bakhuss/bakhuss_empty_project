@@ -17,12 +17,12 @@ public class UserView {
 
     public boolean isIdentified;
 
-    public long position_id;
+    public long positionId;
 
 
     @Override
     public String toString() {
         return "{id:" + id + ";firstName:" + firstName + ";secondName:" + secondName +
-                ";middleName:" + middleName + ";phone:" + phone + ";isIdentified:" + isIdentified + ";position_id:" + position_id + "}";
+                ";middleName:" + middleName + ";phone:" + phone + ";isIdentified:" + isIdentified + ";positionId:" + positionId + "}";
     }
 }

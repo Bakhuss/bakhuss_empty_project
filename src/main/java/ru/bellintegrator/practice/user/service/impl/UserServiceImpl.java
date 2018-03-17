@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
-import ru.bellintegrator.practice.user.dao.UserDAO;
+import ru.bellintegrator.practice.user.dao.UserDao;
 import ru.bellintegrator.practice.user.service.UserService;
 
 @Service
@@ -14,10 +14,10 @@ import ru.bellintegrator.practice.user.service.UserService;
 public class UserServiceImpl implements UserService {
     private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    private final UserDAO userDAO;
+    private final UserDao userDao;
 
     @Autowired
-    private UserServiceImpl(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    private UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 }

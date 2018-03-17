@@ -27,20 +27,20 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @RequestMapping(value = "/save", method = {POST})
-    public Boolean addUser(UserView user) {
-        return null;
+    public void addUser(UserView user) {
+
     }
 
     @Override
     @RequestMapping(value = "/update", method = {POST})
-    public Boolean updateUser(UserView user) {
-        return null;
+    public void updateUser(UserView user) {
+
     }
 
     @Override
     @RequestMapping(value = "/delete", method = {POST})
-    public Boolean deleteUser(Long id) {
-        return null;
+    public void deleteUser(Long id) {
+
     }
 
     @Override

@@ -4,6 +4,9 @@ import ru.bellintegrator.practice.dictionary.view.DocTypeView;
 
 import java.util.List;
 
+/**
+ * Controller для работы с DocType
+ */
 public interface DocTypeController {
 
     /**

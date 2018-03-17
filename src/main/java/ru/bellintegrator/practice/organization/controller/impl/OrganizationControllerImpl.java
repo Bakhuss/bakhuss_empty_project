@@ -28,20 +28,20 @@ public class OrganizationControllerImpl implements OrganizationController {
 
     @Override
     @RequestMapping(value = "/save", method = {POST})
-    public Boolean addOrganization(@RequestBody OrganizationView organization) {
-        return null;
+    public void addOrganization(@RequestBody OrganizationView organization) {
+
     }
 
     @Override
     @RequestMapping(value = "/update", method = {POST})
-    public Boolean updateOrganization(OrganizationView organization) {
-        return null;
+    public void updateOrganization(OrganizationView organization) {
+
     }
 
     @Override
     @RequestMapping(value = "/delete", method = {POST})
-    public Boolean deleteOrganization(Long id) {
-        return null;
+    public void deleteOrganization(Long id) {
+
     }
 
     @Override

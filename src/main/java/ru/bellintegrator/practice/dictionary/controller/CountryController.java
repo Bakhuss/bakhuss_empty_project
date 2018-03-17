@@ -4,6 +4,9 @@ import ru.bellintegrator.practice.dictionary.view.CountryView;
 
 import java.util.List;
 
+/**
+ * Controller для работы с Country
+ */
 public interface CountryController {
 
     /**

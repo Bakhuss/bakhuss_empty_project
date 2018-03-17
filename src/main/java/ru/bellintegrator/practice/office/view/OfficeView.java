@@ -15,12 +15,12 @@ public class OfficeView {
 
     public boolean isActive;
 
-    public String organization_id;
+    public String organizationId;
 
 
     @Override
     public String toString() {
         return "{id:" + id + ";name:" + name + ";address:" + address +
-                ";phone:" + phone + ";isActive:" + isActive + ";organization_id:" + organization_id + "}";
+                ";phone:" + phone + ";isActive:" + isActive + ";organizationId:" + organizationId + "}";
     }
 }

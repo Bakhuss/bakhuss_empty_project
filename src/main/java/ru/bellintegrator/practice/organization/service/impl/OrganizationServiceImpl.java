@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
-import ru.bellintegrator.practice.organization.dao.OrganizationDAO;
+import ru.bellintegrator.practice.organization.dao.OrganizationDao;
 import ru.bellintegrator.practice.organization.service.OrganizationService;
 
 @Service
@@ -14,10 +14,10 @@ import ru.bellintegrator.practice.organization.service.OrganizationService;
 public class OrganizationServiceImpl implements OrganizationService {
     private final Logger log = LoggerFactory.getLogger(OrganizationServiceImpl.class);
 
-    private final OrganizationDAO orgDao;
+    private final OrganizationDao orgDao;
 
     @Autowired
-    private OrganizationServiceImpl(OrganizationDAO orgDao) {
+    private OrganizationServiceImpl(OrganizationDao orgDao) {
         this.orgDao = orgDao;
     }
 }
