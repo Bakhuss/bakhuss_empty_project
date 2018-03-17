@@ -1,4 +1,12 @@
 package ru.bellintegrator.practice.dictionary.dao;
 
-public interface CountryDao {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import ru.bellintegrator.practice.dictionary.model.Country;
+
+/**
+ * DAO для работы с Country
+ */
+@Repository
+public interface CountryDao extends CrudRepository<Country, Long> {
 }
