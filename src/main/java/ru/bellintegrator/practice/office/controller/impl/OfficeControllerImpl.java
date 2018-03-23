@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.office.controller.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,7 @@ public class OfficeControllerImpl implements OfficeController {
     @Override
     @RequestMapping(value = "/save", method = {POST})
     public void addOffice(OfficeView office) {
-
+        ObjectMapper objectMapper = new ObjectMapper();
     }
 
     @Override
