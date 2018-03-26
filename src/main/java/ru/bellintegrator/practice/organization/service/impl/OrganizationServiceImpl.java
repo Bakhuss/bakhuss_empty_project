@@ -12,6 +12,8 @@ import ru.bellintegrator.practice.organization.model.Organization;
 import ru.bellintegrator.practice.organization.service.OrganizationService;
 import ru.bellintegrator.practice.organization.view.OrganizationView;
 
+import java.util.List;
+
 @Service
 @Scope(proxyMode = ScopedProxyMode.INTERFACES)
 public class OrganizationServiceImpl implements OrganizationService {
@@ -42,8 +44,32 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
+    public OrganizationView findById(Long id) {
+        Organization org = orgDao.findOne(id);
+        OrganizationView orgView = new OrganizationView();
+        orgView.id = org.getId();
+        orgView.name = org.getName();
+        orgView.fullName = org.getFullName();
+        orgView.inn = org.getInn();
+        orgView.kpp = org.getKpp();
+        orgView.address = org.getAddress();
+        orgView.phone = org.getPhone();
+        orgView.isActive = org.getActive();
+
+        return orgView;
+    }
+
+    @Override
+    public List<OrganizationView> organizations() {
+        
+
+        return null;
+    }
+
+    @Override
+    @Transactional
     public void update(OrganizationView organization) {
-        Organization org = findById(organization.id);
+        Organization org = orgDao.findOne(organization.id);
         org.setName(organization.name);
         org.setFullName(organization.fullName);
         org.setInn(organization.inn);
@@ -56,11 +82,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    @Transactional
-    public OrganizationView findById(Long id) {
-        Organization org = orgDao.findOne(id);
-        OrganizationView orgView = new OrganizationView();
-        orgView.id = org.getId();
-        return orgView;
+    public void delete(OrganizationView organization) {
+        orgDao.delete(organization.id);
     }
 }
