@@ -53,6 +53,6 @@ public class OfficeControllerImpl implements OfficeController {
     @Override
     @RequestMapping(value = "/list", method = {POST})
     public List<OfficeView> getAllOffices() {
-        return null;
+        return officeService.offices();
     }
 }

@@ -13,7 +13,11 @@ import ru.bellintegrator.practice.office.service.OfficeService;
 import ru.bellintegrator.practice.office.view.OfficeView;
 import ru.bellintegrator.practice.organization.dao.OrganizationDao;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @Scope(proxyMode = ScopedProxyMode.INTERFACES)
@@ -59,10 +63,25 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<OfficeView> offices() {
+        List<Office> all = new ArrayList<>();
+        officeDao.findAll().forEach(all::add);
 
+        Function<Office, OfficeView> mapOffice = p -> {
+            OfficeView view = new OfficeView();
+            view.id = p.getId();
+            view.name = p.getName();
+            view.isActive = p.getActive();
 
-        return null;
+            log.info(view.toString());
+
+            return view;
+        };
+
+        return all.stream()
+                .map(mapOffice)
+                .collect(Collectors.toList());
     }
 
     @Override
