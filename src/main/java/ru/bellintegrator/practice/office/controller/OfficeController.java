@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.office.controller;
 
+import ru.bellintegrator.practice.office.view.OfficeFilter;
 import ru.bellintegrator.practice.office.view.OfficeView;
 
 import java.util.List;
@@ -39,9 +40,9 @@ public interface OfficeController {
 
     /**
      * Get all offices
-     * @param office
+     * @param filter
      * @return JSON offices values
      */
-    List<OfficeView> getAllOffices();
+    List<OfficeView> getAllOffices(OfficeFilter filter);
 
 }

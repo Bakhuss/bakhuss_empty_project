@@ -2,10 +2,12 @@ package ru.bellintegrator.practice.office.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.practice.office.controller.OfficeController;
 import ru.bellintegrator.practice.office.service.OfficeService;
+import ru.bellintegrator.practice.office.view.OfficeFilter;
 import ru.bellintegrator.practice.office.view.OfficeView;
 
 import java.util.List;
@@ -52,7 +54,7 @@ public class OfficeControllerImpl implements OfficeController {
 
     @Override
     @RequestMapping(value = "/list", method = {POST})
-    public List<OfficeView> getAllOffices() {
-        return officeService.offices();
+    public List<OfficeView> getAllOffices(@RequestBody OfficeFilter filter) {
+        return officeService.offices(filter);
     }
 }

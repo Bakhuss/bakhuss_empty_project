@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.persistence.Column;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -46,7 +47,7 @@ public class Organization {
     private Boolean isActive;
 
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Office> offices;
+    private List<Office> offices;
 
 
     public Long getId() {
@@ -109,11 +110,11 @@ public class Organization {
         isActive = active;
     }
 
-    public Set<Office> getOffices() {
+    public List<Office> getOffices() {
         return offices;
     }
 
-    public void setOffices(Set<Office> offices) {
+    public void setOffices(List<Office> offices) {
         this.offices = offices;
     }
 

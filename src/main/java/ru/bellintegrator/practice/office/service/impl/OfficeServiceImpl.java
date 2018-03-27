@@ -5,14 +5,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.office.dao.OfficeDao;
 import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.office.service.OfficeService;
+import ru.bellintegrator.practice.office.view.OfficeFilter;
 import ru.bellintegrator.practice.office.view.OfficeView;
 import ru.bellintegrator.practice.organization.dao.OrganizationDao;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,9 +70,24 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OfficeView> offices() {
-        List<Office> all = new ArrayList<>();
-        officeDao.findAll().forEach(all::add);
+    public List<OfficeView> offices(OfficeFilter filter) {
+        if (filter.orgId == null) return null;
+
+        Long orgId = filter.orgId;
+
+        List<Office> all = orgDao.findOne(orgId).getOffices();
+        officeDao.findOfficesByFilter();
+
+        officeDao.findAll(new Specification<Office>() {
+            @Override
+            public Predicate toPredicate(Root<Office> root,
+                                         CriteriaQuery<?> query,
+                                         CriteriaBuilder cb) {
+
+
+                return null;
+            }
+        });
 
         Function<Office, OfficeView> mapOffice = p -> {
             OfficeView view = new OfficeView();
