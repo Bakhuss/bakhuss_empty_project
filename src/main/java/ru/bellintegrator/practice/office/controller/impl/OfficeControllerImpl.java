@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.office.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.practice.office.controller.OfficeController;
@@ -44,14 +45,14 @@ public class OfficeControllerImpl implements OfficeController {
     }
 
     @Override
-    @RequestMapping(value = "/", method = {GET})
-    public OfficeView getOffice(Long id) {
+    @RequestMapping(value = "/{id}", method = {GET})
+    public OfficeView getOffice(@PathVariable("id") Long id) {
         return null;
     }
 
     @Override
     @RequestMapping(value = "/list", method = {POST})
-    public List<OfficeView> getAllOffices(OfficeView office) {
+    public List<OfficeView> getAllOffices() {
         return null;
     }
 }

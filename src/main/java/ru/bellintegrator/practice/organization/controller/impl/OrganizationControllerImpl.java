@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.organization.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +47,8 @@ public class OrganizationControllerImpl implements OrganizationController {
     }
 
     @Override
-    @RequestMapping(value = "/", method = {GET})
-    public OrganizationView getOrganization(@PathVariable Long id) {
+    @RequestMapping(value = "/{id}", method = {GET})
+    public OrganizationView getOrganization(@PathVariable("id") Long id) {
         return null;
     }
 

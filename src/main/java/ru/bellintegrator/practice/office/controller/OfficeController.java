@@ -42,6 +42,6 @@ public interface OfficeController {
      * @param office
      * @return JSON offices values
      */
-    List<OfficeView> getAllOffices(OfficeView office);
+    List<OfficeView> getAllOffices();
 
 }
