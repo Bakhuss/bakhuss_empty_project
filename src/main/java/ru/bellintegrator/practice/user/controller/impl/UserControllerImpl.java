@@ -2,6 +2,7 @@ package ru.bellintegrator.practice.user.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.practice.ResponseView;
@@ -29,19 +30,19 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @RequestMapping(value = "/save", method = {POST})
-    public ResponseView addUser(UserView user) {
+    public ResponseView addUser(@RequestBody UserView user) {
         return userService.add(user);
     }
 
     @Override
     @RequestMapping(value = "/update", method = {POST})
-    public ResponseView updateUser(UserView user) {
+    public ResponseView updateUser(@RequestBody UserView user) {
         return userService.update(user);
     }
 
     @Override
     @RequestMapping(value = "/delete", method = {POST})
-    public ResponseView deleteUser(UserView user) {
+    public ResponseView deleteUser(@RequestBody UserView user) {
         return userService.delete(user);
     }
 
@@ -53,7 +54,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @RequestMapping(value = "/list", method = {POST})
-    public ResponseView getAllUsers(UserView user) {
+    public ResponseView getAllUsers(@RequestBody UserView user) {
         return userService.users();
     }
 }

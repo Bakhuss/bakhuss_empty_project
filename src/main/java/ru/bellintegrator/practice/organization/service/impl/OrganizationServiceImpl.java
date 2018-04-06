@@ -100,6 +100,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         };
 
         ResponseView view = new ResponseView();
+        view.result = null;
         view.data =
                 org.stream()
                         .map(orgFunc)
