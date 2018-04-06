@@ -29,19 +29,19 @@ public class OfficeControllerImpl implements OfficeController {
 
     @Override
     @PostMapping(value = "/save")
-    public ResponseView addOffice(OfficeView office) {
+    public ResponseView addOffice(@RequestBody OfficeView office) {
         return officeService.add(office);
     }
 
     @Override
     @PostMapping(value = "/update")
-    public ResponseView updateOffice(OfficeView office) {
+    public ResponseView updateOffice(@RequestBody OfficeView office) {
         return officeService.update(office);
     }
 
     @Override
     @PostMapping(value = "/delete")
-    public ResponseView deleteOffice(OfficeView office) {
+    public ResponseView deleteOffice(@RequestBody OfficeView office) {
         return officeService.delete(office);
     }
 

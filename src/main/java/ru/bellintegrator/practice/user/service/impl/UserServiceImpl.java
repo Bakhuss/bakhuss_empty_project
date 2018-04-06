@@ -136,7 +136,6 @@ public class UserServiceImpl implements UserService {
         try {
             tempUser = userDao.findOne(Long.parseLong(user.id));
         } catch (NumberFormatException ex) {
-            System.out.println("----------" + user.id);
             throw new ResponsErrorException("Id must be a number");
         }
         tempUser.setFirstName(user.firstName);
