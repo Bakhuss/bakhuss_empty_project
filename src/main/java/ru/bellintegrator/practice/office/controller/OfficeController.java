@@ -1,9 +1,8 @@
 package ru.bellintegrator.practice.office.controller;
 
+import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.office.view.OfficeFilter;
 import ru.bellintegrator.practice.office.view.OfficeView;
-
-import java.util.List;
 
 /**
  * Controller для работы с Office
@@ -15,34 +14,34 @@ public interface OfficeController {
      * @param office
      * @return success value
      */
-    void addOffice(OfficeView office);
+    ResponseView addOffice(OfficeView office);
 
     /**
      * Update office
      * @param office
      * @return success value
      */
-    void updateOffice(OfficeView office);
+    ResponseView updateOffice(OfficeView office);
 
     /**
      * Delete office
-     * @param id
+     * @param office
      * @return success value
      */
-    void deleteOffice(Long id);
+    ResponseView deleteOffice(OfficeView office);
 
     /**
      * Get office
      * @param id
      * @return JSON office value
      */
-    OfficeView getOffice(Long id);
+    ResponseView getOffice(String id);
 
     /**
      * Get all offices
      * @param filter
      * @return JSON offices values
      */
-    List<OfficeView> getAllOffices(OfficeFilter filter);
+    ResponseView getAllOffices(OfficeFilter filter);
 
 }

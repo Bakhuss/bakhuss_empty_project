@@ -10,4 +10,6 @@ import ru.bellintegrator.practice.user.model.Document;
 @Repository
 public interface DocumentDao extends CrudRepository<Document, Long> {
 
+    Document findByNumber(String number);
+
 }

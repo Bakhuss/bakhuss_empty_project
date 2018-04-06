@@ -1,8 +1,7 @@
 package ru.bellintegrator.practice.user.controller;
 
+import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.user.view.UserView;
-
-import java.util.List;
 
 /**
  * Controller для работы с User
@@ -14,34 +13,34 @@ public interface UserController {
      * @param user
      * @return success value
      */
-    void addUser(UserView user);
+    ResponseView addUser(UserView user);
 
     /**
      * Update user
      * @param user
      * @return success value
      */
-    void updateUser(UserView user);
+    ResponseView updateUser(UserView user);
 
     /**
      * Delete user
      * @param id
      * @return success value
      */
-    void deleteUser(Long id);
+    ResponseView deleteUser(UserView user);
 
     /**
      * Get user
      * @param id
      * @return JSON user value
      */
-    UserView getUser(Long id);
+    ResponseView getUser(String id);
 
     /**
      * Get all users
      * @param user
      * @return JSON users values
      */
-    List<UserView> getAllUsers(UserView user);
+    ResponseView getAllUsers(UserView user);
 
 }

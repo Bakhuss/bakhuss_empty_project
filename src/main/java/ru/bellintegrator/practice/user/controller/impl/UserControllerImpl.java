@@ -1,8 +1,10 @@
 package ru.bellintegrator.practice.user.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.user.controller.UserController;
 import ru.bellintegrator.practice.user.service.UserService;
 import ru.bellintegrator.practice.user.view.UserView;
@@ -27,31 +29,31 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @RequestMapping(value = "/save", method = {POST})
-    public void addUser(UserView user) {
-
+    public ResponseView addUser(UserView user) {
+        return userService.add(user);
     }
 
     @Override
     @RequestMapping(value = "/update", method = {POST})
-    public void updateUser(UserView user) {
-
+    public ResponseView updateUser(UserView user) {
+        return userService.update(user);
     }
 
     @Override
     @RequestMapping(value = "/delete", method = {POST})
-    public void deleteUser(Long id) {
-
+    public ResponseView deleteUser(UserView user) {
+        return userService.delete(user);
     }
 
     @Override
-    @RequestMapping(value = "/", method = {GET})
-    public UserView getUser(Long id) {
-        return null;
+    @RequestMapping(value = "/{id}", method = {GET})
+    public ResponseView getUser(@PathVariable("id") String id) {
+        return userService.findById(id);
     }
 
     @Override
     @RequestMapping(value = "/list", method = {POST})
-    public List<UserView> getAllUsers(UserView user) {
-        return null;
+    public ResponseView getAllUsers(UserView user) {
+        return userService.users();
     }
 }

@@ -28,8 +28,8 @@ INSERT INTO User (id, version, first_name, second_name, middle_name, position_id
     VALUES (3, 0, 'Сидор', 'Сидорович', 'Сидоров', 3, '9630000000', 3, false);
 
 INSERT INTO Document (user_id, version, doc_type_id, number, receive_date, expire_date)
-    VALUES (1, 0, 2, '351200000', );
+    VALUES (1, 0, 2, '351200000', '2018-04-04', '2018-04-04' );
 INSERT INTO Document (user_id, version, doc_type_id, number, receive_date, expire_date)
-    VALUES (2, 0, 1, '6599000000', );
+    VALUES (2, 0, 1, '6599000000', '2018-04-04', '2018-04-04' );
 INSERT INTO Document (user_id, version, doc_type_id, number, receive_date, expire_date)
-    VALUES (3, 0, 1, '6505000000', );
+    VALUES (3, 0, 1, '6505000000', '2018-04-04', '2018-04-04' );

@@ -9,4 +9,7 @@ import ru.bellintegrator.practice.dictionary.model.Country;
  */
 @Repository
 public interface CountryDao extends CrudRepository<Country, Long> {
+
+    Country findByName(String name);
+
 }

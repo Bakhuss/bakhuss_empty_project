@@ -1,4 +1,7 @@
-package ru.bellintegrator.practice.user.model;
+package ru.bellintegrator.practice.login.model;
+
+import org.springframework.context.annotation.ComponentScan;
+import ru.bellintegrator.practice.user.model.User;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +30,12 @@ public class Login {
     @Column(nullable = false)
     private String password;
 
+    @Column(name = "activation_code")
+    private String activationCode;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     private User user;
@@ -50,6 +59,22 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     public User getUser() {

@@ -21,45 +21,39 @@ public class PositionServiceImpl implements PositionService {
     private final PositionDao positionDao;
 
     @Autowired
-    private PositionServiceImpl(PositionDao dao) {
+    public PositionServiceImpl(PositionDao dao) {
         this.positionDao = dao;
     }
 
     @Override
-    public void add(PositionView position) {
-        Position tempPos = new Position();
-        tempPos.setName(position.name);
-
-        positionDao.save(tempPos);
+    public void add(Position position) {
+        positionDao.save(position);
     }
 
     @Override
-    public PositionView findById(Long id) {
-        Position pos = positionDao.findOne(id);
-        PositionView posView = new PositionView();
-        posView.id = pos.getId();
-        posView.name = pos.getName();
-
-        return posView;
+    public Position findById(Long id) {
+        return positionDao.findOne(id);
     }
 
     @Override
-    public List<PositionView> positions() {
+    public Position findByName(String name) {
+        return positionDao.findByName(name);
+    }
+
+    @Override
+    public List<Position> positions() {
 
 
         return null;
     }
 
     @Override
-    public void update(PositionView position) {
-        Position pos = positionDao.findOne(position.id);
-        pos.setName(position.name);
-
-        positionDao.save(pos);
+    public void update(Position position) {
+        positionDao.save(position);
     }
 
     @Override
-    public void delete(PositionView position) {
-        positionDao.delete(position.id);
+    public void delete(Position position) {
+        positionDao.delete(position.getId());
     }
 }

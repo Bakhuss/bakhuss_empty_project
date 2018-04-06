@@ -2,7 +2,7 @@ package ru.bellintegrator.practice.office.view;
 
 public class OfficeFilter {
 
-    public Long orgId;
+    public String orgId;
 
     public String name;
 

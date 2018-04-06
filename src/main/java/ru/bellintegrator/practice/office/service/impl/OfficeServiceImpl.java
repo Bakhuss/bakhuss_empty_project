@@ -5,25 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.bellintegrator.practice.Error.ResponsErrorException;
+import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.office.dao.OfficeDao;
 import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.office.service.OfficeService;
 import ru.bellintegrator.practice.office.view.OfficeFilter;
 import ru.bellintegrator.practice.office.view.OfficeView;
 import ru.bellintegrator.practice.organization.dao.OrganizationDao;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 @Scope(proxyMode = ScopedProxyMode.INTERFACES)
@@ -34,92 +25,129 @@ public class OfficeServiceImpl implements OfficeService {
     private final OrganizationDao orgDao;
 
     @Autowired
-    private OfficeServiceImpl(OfficeDao officeDao, OrganizationDao orgDao) {
+    public OfficeServiceImpl(OfficeDao officeDao, OrganizationDao orgDao) {
         this.officeDao = officeDao;
         this.orgDao = orgDao;
     }
 
     @Override
     @Transactional
-    public void add(OfficeView office) {
-        Office off = new Office();
-        off.setName(office.name);
-        off.setAddress(office.address);
-        off.setPhone(office.phone);
-        off.setActive(false);
-
-        off.setOrganization(orgDao.findOne(Long.valueOf(office.orgId)));
-
-        officeDao.save(off);
+    public ResponseView add(OfficeView office) {
+        try {
+            Office off = new Office();
+            off.setName(office.name);
+            off.setAddress(office.address);
+            off.setPhone(office.phone);
+            off.setActive(false);
+            off.setOrganization(orgDao.findOne(Long.valueOf(office.orgId)));
+            officeDao.save(off);
+        } catch (Exception ex) {
+            throw new ResponsErrorException("Error saving office");
+        }
+        return new ResponseView();
     }
 
     @Override
     @Transactional
-    public OfficeView findById(Long id) {
-        Office off = officeDao.findOne(id);
+    public ResponseView findById(String id) {
+        Office off = null;
+        try {
+            off = officeDao.findOne(Long.valueOf(id));
+        } catch (Exception ex) {
+            log.warn(ex.getMessage());
+            throw new ResponsErrorException("Office id must be a number");
+        }
+
+        if (off == null) {
+            throw new ResponsErrorException("Not found office by id = " + id);
+        }
+
         OfficeView offView = new OfficeView();
-        offView.id = off.getId();
+        offView.id = off.getId().toString();
         offView.name = off.getName();
         offView.address = off.getAddress();
         offView.phone = off.getPhone();
         offView.isActive = off.getActive();
-        offView.orgId = off.getOrganization().getId().toString();
 
-        return offView;
+        return new ResponseView(offView);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<OfficeView> offices(OfficeFilter filter) {
-        if (filter.orgId == null) return null;
+    public ResponseView offices(OfficeFilter filter) {
+        Long orgId = null;
+        String name = null;
+        String phone = null;
+        Boolean isActive = null;
 
-        Long orgId = filter.orgId;
-
-        List<Office> all = orgDao.findOne(orgId).getOffices();
-        officeDao.findOfficesByFilter();
-
-        officeDao.findAll(new Specification<Office>() {
-            @Override
-            public Predicate toPredicate(Root<Office> root,
-                                         CriteriaQuery<?> query,
-                                         CriteriaBuilder cb) {
+        orgId = Long.valueOf(filter.orgId);
+        name = filter.name;
+        phone = filter.phone;
+        isActive = filter.isActive;
 
 
-                return null;
-            }
-        });
-
-        Function<Office, OfficeView> mapOffice = p -> {
-            OfficeView view = new OfficeView();
-            view.id = p.getId();
-            view.name = p.getName();
-            view.isActive = p.getActive();
-
-            log.info(view.toString());
-
-            return view;
-        };
-
-        return all.stream()
-                .map(mapOffice)
-                .collect(Collectors.toList());
+//        List<Office> all = orgDao.findOne(orgId).getOffices();
+//        officeDao.findOfficesByFilter();
+//
+//
+//        Function<Office, OfficeView> mapOffice = p -> {
+//            OfficeView view = new OfficeView();
+//            view.id = p.getId();
+//            view.name = p.getName();
+//            view.isActive = p.getActive();
+//
+//            log.info(view.toString());
+//
+//            return view;
+//
+//        };
+//
+//        return all.stream()
+//                .map(mapOffice)
+//                .collect(Collectors.toList());
+        return null;
     }
 
     @Override
     @Transactional
-    public void update(OfficeView office) {
-        Office off = officeDao.findOne(office.id);
+    public ResponseView update(OfficeView office) {
+        Office off = null;
+        Long orgId = null;
+
+        try {
+            off = officeDao.findOne(Long.valueOf(office.id));
+        } catch (Exception ex) {
+            throw new ResponsErrorException("Office id must be a number");
+        }
+        if (off == null) {
+            throw new ResponsErrorException("Not found office by id = " + office.id);
+        }
+
+        try {
+            orgId = Long.valueOf(office.orgId);
+            off.setOrganization(orgDao.findOne(orgId));
+        } catch (Exception ex) {
+            throw new ResponsErrorException("Organization id is a required search parameter, must be a number");
+        }
+
         off.setName(office.name);
         off.setAddress(office.address);
         off.setPhone(office.phone);
         off.setActive(office.isActive);
-        off.setOrganization(orgDao.findOne(Long.valueOf(office.orgId)));
 
         officeDao.save(off);
+
+        return new ResponseView();
     }
 
     @Override
-    public void delete(OfficeView office) {
-        officeDao.delete(office.id);
+    @Transactional
+    public ResponseView delete(OfficeView office) {
+        try {
+            officeDao.delete(Long.valueOf(office.id));
+        } catch (Exception ex) {
+            throw new ResponsErrorException("Error deleting office by id = " + office.id);
+        }
+        return new ResponseView();
     }
 }

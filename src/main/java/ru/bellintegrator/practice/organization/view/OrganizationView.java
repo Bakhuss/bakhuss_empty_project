@@ -1,11 +1,14 @@
 package ru.bellintegrator.practice.organization.view;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class OrganizationView {
 
     @ApiModelProperty(hidden = true)
-    public long id;
+    public String id;
 
     public String name;
 

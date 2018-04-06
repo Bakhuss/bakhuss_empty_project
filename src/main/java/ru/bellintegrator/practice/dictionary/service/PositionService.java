@@ -1,19 +1,22 @@
 package ru.bellintegrator.practice.dictionary.service;
 
+import ru.bellintegrator.practice.dictionary.model.Position;
 import ru.bellintegrator.practice.dictionary.view.PositionView;
 
 import java.util.List;
 
 public interface PositionService {
 
-    void add(PositionView position);
+    void add(Position position);
 
-    PositionView findById(Long id);
+    Position findById(Long id);
 
-    List<PositionView> positions();
+    Position findByName(String name);
 
-    void update(PositionView position);
+    List<Position> positions();
 
-    void delete(PositionView position);
+    void update(Position position);
+
+    void delete(Position position);
 
 }

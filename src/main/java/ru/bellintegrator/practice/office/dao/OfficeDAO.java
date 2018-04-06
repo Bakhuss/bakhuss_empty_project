@@ -14,7 +14,4 @@ import java.util.List;
 @Repository
 public interface OfficeDao extends CrudRepository<Office, Long>, JpaSpecificationExecutor<Office> {
 
-    @Query("")
-    List<Office> findOfficesByFilter();
-
 }

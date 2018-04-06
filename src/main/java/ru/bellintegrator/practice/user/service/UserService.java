@@ -1,18 +1,19 @@
 package ru.bellintegrator.practice.user.service;
 
+import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.user.view.UserView;
 
 import java.util.List;
 
 public interface UserService {
 
-    void add(UserView user);
+    ResponseView add(UserView user);
 
-    UserView findById(Long id);
+    ResponseView findById(String id);
 
-    List<UserView> users();
+    ResponseView users();
 
-    void update(UserView user);
+    ResponseView update(UserView user);
 
-    void delete(UserView user);
+    ResponseView delete(UserView user);
 }

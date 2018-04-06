@@ -2,6 +2,7 @@ package ru.bellintegrator.practice.user.model;
 
 import ru.bellintegrator.practice.dictionary.model.Country;
 import ru.bellintegrator.practice.dictionary.model.Position;
+import ru.bellintegrator.practice.login.model.Login;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -41,6 +42,9 @@ public class User {
 
     @Column(length = 20)
     private String phone;
+
+    @Column(name = "e_mail")
+    private String eMail;
 
     @Column(name = "is_identified", nullable = false)
     private Boolean isIdentified;
@@ -103,6 +107,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
     public Boolean getIdentified() {

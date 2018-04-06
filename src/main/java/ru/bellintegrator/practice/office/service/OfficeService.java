@@ -1,21 +1,19 @@
 package ru.bellintegrator.practice.office.service;
 
-import ru.bellintegrator.practice.office.model.Office;
+import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.office.view.OfficeFilter;
 import ru.bellintegrator.practice.office.view.OfficeView;
 
-import java.util.List;
-
 public interface OfficeService {
 
-    void add(OfficeView office);
+    ResponseView add(OfficeView office);
 
-    OfficeView findById(Long id);
+    ResponseView findById(String id);
 
-    List<OfficeView> offices(OfficeFilter filter);
+    ResponseView offices(OfficeFilter filter);
 
-    void update(OfficeView office);
+    ResponseView update(OfficeView office);
 
-    void delete(OfficeView office);
+    ResponseView delete(OfficeView office);
 
 }

@@ -3,18 +3,17 @@ package ru.bellintegrator.practice.organization.controller.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.bellintegrator.practice.Error.ResponsErrorException;
+import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.organization.controller.OrganizationController;
 import ru.bellintegrator.practice.organization.service.OrganizationService;
 import ru.bellintegrator.practice.organization.view.OrganizationView;
 
-import java.util.List;
-
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RequestMapping(value = "/organization", produces = APPLICATION_JSON_VALUE)
@@ -29,32 +28,33 @@ public class OrganizationControllerImpl implements OrganizationController {
 
 
     @Override
-    @RequestMapping(value = "/save", method = {POST})
-    public void addOrganization(@RequestBody OrganizationView organization) {
-        orgService.add(organization);
+    @PostMapping(value = "/save")
+    public ResponseView addOrganization(@RequestBody OrganizationView organization) {
+        return orgService.add(organization);
     }
 
     @Override
-    @RequestMapping(value = "/update", method = {POST})
-    public void updateOrganization(OrganizationView organization) {
-        
+    @PostMapping(value = "/update")
+    public ResponseView updateOrganization(@RequestBody OrganizationView organization) {
+        return orgService.update(organization);
     }
 
     @Override
-    @RequestMapping(value = "/delete", method = {POST})
-    public void deleteOrganization(Long id) {
-
+    @PostMapping(value = "/delete")
+    public ResponseView deleteOrganization(@RequestBody OrganizationView organization) {
+        return orgService.delete(organization);
     }
 
     @Override
-    @RequestMapping(value = "/{id}", method = {GET})
-    public OrganizationView getOrganization(@PathVariable("id") Long id) {
-        return null;
+    @GetMapping(value = "/{id}")
+    public ResponseView getOrganization(@PathVariable("id") String id) {
+        return orgService.findById(id);
     }
 
     @Override
-    @RequestMapping(value = "/list", method = {POST})
-    public List<OrganizationView> getAllOrganizations(OrganizationView organization) {
-        return null;
+    @PostMapping(value = "/list")
+    public ResponseView getAllOrganizations(@RequestBody OrganizationView organization) {
+        return orgService.organizations(organization);
+
     }
 }

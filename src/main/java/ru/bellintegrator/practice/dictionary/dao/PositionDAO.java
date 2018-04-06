@@ -9,4 +9,7 @@ import ru.bellintegrator.practice.dictionary.model.Position;
  */
 @Repository
 public interface PositionDao extends CrudRepository<Position, Long> {
+
+    Position findByName(String name);
+
 }

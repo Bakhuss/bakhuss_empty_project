@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class OfficeView {
 
     @ApiModelProperty(hidden = true)
-    public long id;
+    public String id;
 
     public String name;
 
@@ -16,6 +16,7 @@ public class OfficeView {
     public boolean isActive;
 
     public String orgId;
+
 
     @Override
     public String toString() {

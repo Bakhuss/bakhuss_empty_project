@@ -9,4 +9,7 @@ import ru.bellintegrator.practice.dictionary.model.DocType;
  */
 @Repository
 public interface DocTypeDao extends CrudRepository<DocType, Long> {
+
+    DocType findByName(String name);
+
 }

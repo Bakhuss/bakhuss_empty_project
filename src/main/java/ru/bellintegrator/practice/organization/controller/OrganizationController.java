@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.organization.controller;
 
+import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.organization.view.OrganizationView;
 
 import java.util.List;
@@ -14,34 +15,34 @@ public interface OrganizationController {
      * @param organization
      * @return success value
      */
-    void addOrganization(OrganizationView organization);
+    ResponseView addOrganization(OrganizationView organization);
 
     /**
      * Update organization
      * @param organization
      * @return success value
      */
-    void updateOrganization(OrganizationView organization);
+    ResponseView updateOrganization(OrganizationView organization);
 
     /**
      * Delete organization
      * @param id
      * @return success value
      */
-    void deleteOrganization(Long id);
+    ResponseView deleteOrganization(OrganizationView organization);
 
     /**
      * Get organization
      * @param id
      * @return JSON organization value
      */
-    OrganizationView getOrganization(Long id);
+    ResponseView getOrganization(String id);
 
     /**
      * Get all organizations
      * @param organization
      * @return JSON organizations values
      */
-    List<OrganizationView> getAllOrganizations(OrganizationView organization);
+    ResponseView getAllOrganizations(OrganizationView organization);
 
 }
