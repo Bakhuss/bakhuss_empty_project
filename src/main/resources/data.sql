@@ -2,9 +2,12 @@ INSERT INTO Country (id, version, name, code) VALUES (1, 0, 'Российска�
 INSERT INTO Country (id, version, name, code) VALUES (2, 0, 'Соединенные Штаты Америки', '840');
 INSERT INTO Country (id, version, name, code) VALUES (3, 0, 'Королевство Испания', '724');
 
-INSERT INTO Doc_type (id, version, name, code) VALUES (1, 0, 'Паспорт гражданина Российской Федерации', '21');
-INSERT INTO Doc_type (id, version, name, code) VALUES (2, 0, 'Вид на жительство в Российской Федерации', '12');
-INSERT INTO Doc_type (id, version, name, code) VALUES (3, 0, 'Иные документы', '91');
+INSERT INTO Doc_type (id, version, name, code)
+    VALUES (1, 0, 'Паспорт гражданина Российской Федерации', '21');
+INSERT INTO Doc_type (id, version, name, code)
+    VALUES (2, 0, 'Вид на жительство в Российской Федерации', '12');
+INSERT INTO Doc_type (id, version, name, code)
+    VALUES (3, 0, 'Иные документы', '91');
 
 INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, phone, is_active)
     VALUES (1, 0, 'ПАО Сбербанк', 'Публичное акционерное общество «Сбербанк России»', '7707083893', '773601001', 'Россия, Москва, 117997, ул. Вавилова, д. 19', '8 (800) 555-55-50', false);
@@ -33,3 +36,10 @@ INSERT INTO Document (user_id, version, doc_type_id, number, receive_date, expir
     VALUES (2, 0, 1, '6599000000', '2018-04-04', '2018-04-04' );
 INSERT INTO Document (user_id, version, doc_type_id, number, receive_date, expire_date)
     VALUES (3, 0, 1, '6505000000', '2018-04-04', '2018-04-04' );
+
+INSERT INTO User_Country (user_id, country_id)
+    VALUES (1, 3);
+INSERT INTO User_Country (user_id, country_id)
+    VALUES (2, 1);
+INSERT INTO User_Country (user_id, country_id)
+    VALUES (2, 2);

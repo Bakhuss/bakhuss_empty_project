@@ -1,11 +1,14 @@
 package ru.bellintegrator.practice.user.view;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import ru.bellintegrator.practice.dictionary.view.CountryView;
+import springfox.documentation.spring.web.json.Json;
 
 import java.util.Date;
 import java.util.List;
 
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class UserView {
 
     @ApiModelProperty(hidden = true)

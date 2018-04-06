@@ -1,7 +1,9 @@
 package ru.bellintegrator.practice.office.view;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class OfficeView {
 
     @ApiModelProperty(hidden = true)

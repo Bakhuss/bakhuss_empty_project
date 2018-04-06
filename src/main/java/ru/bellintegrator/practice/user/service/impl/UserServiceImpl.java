@@ -87,13 +87,13 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public ResponseView findById(String id) {
-        System.out.println("--------start--------");
         User user = null;
         try {
             user = userDao.findOne(Long.valueOf(id));
         } catch (NumberFormatException ex) {
             throw new ResponsErrorException("Id must be a number");
         }
+        if (user == null) throw new ResponsErrorException("Not found user by id = " + id);
 
         UserView userView = new UserView();
         userView.id = user.getId().toString();
@@ -112,14 +112,13 @@ public class UserServiceImpl implements UserService {
             v.code = country.getCode();
             return v;
         };
+
         userView.countries = user.getCitizenships()
                 .stream()
                 .map(countryViewFunc)
                 .collect(Collectors.toList());
 
         userView.isIdentified = user.getIdentified();
-
-        System.out.println("-----stop-------");
 
         return new ResponseView(userView);
     }

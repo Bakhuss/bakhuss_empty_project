@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
+import ru.bellintegrator.practice.Error.ExceptionHandlerController;
 import ru.bellintegrator.practice.office.controller.impl.OfficeControllerImpl;
 import ru.bellintegrator.practice.office.dao.OfficeDao;
 import ru.bellintegrator.practice.office.service.impl.OfficeServiceImpl;
@@ -23,7 +24,8 @@ import ru.bellintegrator.practice.user.service.impl.UserServiceImpl;
 @ComponentScan(basePackageClasses = {
         OfficeServiceImpl.class, OfficeControllerImpl.class, OfficeDao.class,
         OrganizationServiceImpl.class, OrganizationControllerImpl.class, OrganizationDao.class,
-        UserService.class, UserControllerImpl.class, UserDao.class
+        UserService.class, UserControllerImpl.class, UserDao.class,
+        ExceptionHandlerController.class
         })
 public class Application {
 

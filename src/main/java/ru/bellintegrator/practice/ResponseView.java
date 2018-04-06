@@ -14,7 +14,6 @@ public class ResponseView {
     }
 
     public ResponseView(Object data) {
-        result = "success";
         this.data = data;
     }
 }
