@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -72,7 +73,7 @@ public class UserServiceImpl implements UserService {
         newUser.seteMail(user.eMail);
         newUser.setIdentified(user.isIdentified);
         newUser.setPosition(positionDao.findByName(user.position));
-//        newUser.getCitizenships().add(countryDao.findByName());
+
         User tmpUser = userDao.save(newUser);
 
         Document newDoc = new Document();
@@ -163,12 +164,14 @@ public class UserServiceImpl implements UserService {
         docDao.save(doc);
 
         Function<CountryView, Country> countryFunc = countryView -> countryDao.findByName(countryView.name);
-        userFromDao.getCitizenships().addAll(
-                user.countries
-                        .stream()
-                        .map(countryFunc)
-                        .collect(Collectors.toSet())
-        );
+
+        Set<Country> temp = user.countries.stream()
+                .map(countryFunc)
+                .collect(Collectors.toSet());
+
+        // Инициализация поля для обновления.
+        userFromDao.getCitizenships();
+        userFromDao.setCitizenships(temp);
 
         userFromDao.setIdentified(user.isIdentified);
 
