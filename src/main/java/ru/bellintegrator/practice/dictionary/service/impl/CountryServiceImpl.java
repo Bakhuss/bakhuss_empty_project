@@ -3,6 +3,9 @@ package ru.bellintegrator.practice.dictionary.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Service;
 import ru.bellintegrator.practice.ResponseView;
 import ru.bellintegrator.practice.dictionary.dao.CountryDao;
 import ru.bellintegrator.practice.dictionary.model.Country;
@@ -14,6 +17,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Service
+@Scope(proxyMode = ScopedProxyMode.INTERFACES)
 public class CountryServiceImpl implements CountryService {
     private final Logger log = LoggerFactory.getLogger(CountryServiceImpl.class);
 
@@ -49,6 +54,7 @@ public class CountryServiceImpl implements CountryService {
         };
 
         ResponseView view = new ResponseView();
+        view.result = null;
         view.data = countries
                 .stream()
                 .map(countryViewFunc)

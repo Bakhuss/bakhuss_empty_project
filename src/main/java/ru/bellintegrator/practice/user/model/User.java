@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.persistence.Column;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Сотрудник
@@ -70,7 +71,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "country_id")
     )
-    private List<Country> citizenships;
+    private Set<Country> citizenships;
 
 
     public Long getId() {
@@ -149,11 +150,11 @@ public class User {
         this.position = position;
     }
 
-    public List<Country> getCitizenships() {
+    public Set<Country> getCitizenships() {
         return citizenships;
     }
 
-    public void setCitizenships(List<Country> citizenships) {
+    public void setCitizenships(Set<Country> citizenships) {
         this.citizenships = citizenships;
     }
 }

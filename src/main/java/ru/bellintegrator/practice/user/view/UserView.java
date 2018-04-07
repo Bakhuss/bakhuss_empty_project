@@ -7,6 +7,7 @@ import springfox.documentation.spring.web.json.Json;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class UserView {
@@ -40,7 +41,7 @@ public class UserView {
     /**
      * Country
      */
-    public List<CountryView> countries;
+    public Set<CountryView> countries;
 
 //    public String citizenshipName;
 //

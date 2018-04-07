@@ -28,8 +28,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Scope(proxyMode = ScopedProxyMode.INTERFACES)
@@ -112,11 +114,10 @@ public class UserServiceImpl implements UserService {
             v.code = country.getCode();
             return v;
         };
-
         userView.countries = user.getCitizenships()
                 .stream()
                 .map(countryViewFunc)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
 
         userView.isIdentified = user.getIdentified();
 
@@ -132,23 +133,23 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public ResponseView update(UserView user) {
-        User tempUser = null;
+        User userFromDao = null;
         try {
-            tempUser = userDao.findOne(Long.parseLong(user.id));
+            userFromDao = userDao.findOne(Long.parseLong(user.id));
         } catch (NumberFormatException ex) {
             throw new ResponsErrorException("Id must be a number");
         }
-        tempUser.setFirstName(user.firstName);
-        tempUser.setSecondName(user.secondName);
-        tempUser.setMiddleName(user.middleName);
-        tempUser.setPosition(positionDao.findByName(user.position));
-        tempUser.setPhone(user.phone);
+        userFromDao.setFirstName(user.firstName);
+        userFromDao.setSecondName(user.secondName);
+        userFromDao.setMiddleName(user.middleName);
+        userFromDao.setPosition(positionDao.findByName(user.position));
+        userFromDao.setPhone(user.phone);
 
-        Document doc = docDao.findOne(tempUser.getId());
+        Document doc = docDao.findOne(userFromDao.getId());
 
         if (doc == null) {
             doc = new Document();
-            doc.setUser(tempUser);
+            doc.setUser(userFromDao);
             doc.setDocType(docTypeDao.findByName(user.docType));
             doc.setNumber(user.docNumber);
             doc.setReceiveDate(user.docReceiveDate);
@@ -161,11 +162,17 @@ public class UserServiceImpl implements UserService {
         }
         docDao.save(doc);
 
+        Function<CountryView, Country> countryFunc = countryView -> countryDao.findByName(countryView.name);
+        userFromDao.getCitizenships().addAll(
+                user.countries
+                        .stream()
+                        .map(countryFunc)
+                        .collect(Collectors.toSet())
+        );
 
+        userFromDao.setIdentified(user.isIdentified);
 
-        tempUser.setIdentified(user.isIdentified);
-
-        userDao.save(tempUser);
+        userDao.save(userFromDao);
 
         return new ResponseView();
     }
